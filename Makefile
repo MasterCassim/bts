@@ -41,7 +41,11 @@ eslint:
 stylelint:
 	@./node_modules/.bin/stylelint static/css/*.css
 
+bup-dist:
+	git clone https://github.com/MasterCassim/bup.git dist && cd dist && make deps && make dist
+
 all: deps
+	${MAKE} bup-dist
 	$(MAKE) bupdate
 	$(MAKE) install-bup-dev
 
@@ -50,7 +54,7 @@ bupdate:
 
 install-bup-dev:
 	if test -e ${BUPDEV} ; then cd ${BUPDEV} && git pull; fi
-	if test '!' -e ${BUPDEV} ; then git clone https://github.com/phihag/bup.git ${BUPDEV} && cd static/bup/dev && make download-libs; fi
+	if test '!' -e ${BUPDEV} ; then git clone https://github.com/MasterCassim/bup.git ${BUPDEV} && cd static/bup/dev && make download-libs; fi
 
 install-service:
 	sed -e "s#BTS_ROOT_DIR#$$PWD#" div/bts.service.template > /etc/systemd/system/bts.service

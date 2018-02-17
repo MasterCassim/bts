@@ -73,16 +73,16 @@ function bupdate(target_dir, callback) {
 	const tmp_dir = path.join(target_dir, 'bupdate_tmp_' + tmp_token);
 	const new_dir = path.join(tmp_dir, 'new');
 	const final_dir = path.join(target_dir, 'downloaded');
-	const zip_fn = path.join(tmp_dir, 'bup.zip');
+	const zip_fn = path.join('dist', 'dist', 'bup.zip');
 	const backup_dir = path.join(target_dir, 'bupdate_tmp_oldbup_' + tmp_token);
 
 	async.waterfall([function(cb) {
 		fs.mkdir(tmp_dir, cb);
 	}, function(cb) {
-		const req = request({
-			url: ZIP_URL,
-		});
-		download_file(req, zip_fn, cb);
+		// const req = request({
+		// 	url: ZIP_URL,
+		// });
+		// download_file(req, zip_fn, cb);
 	}, function(cb) {
 		const new_dir_abs = path.resolve(new_dir);
 		extract_zip(zip_fn, {dir: new_dir_abs}, cb);
