@@ -79,11 +79,6 @@ function bupdate(target_dir, callback) {
 	async.waterfall([function(cb) {
 		fs.mkdir(tmp_dir, cb);
 	}, function(cb) {
-		// const req = request({
-		// 	url: ZIP_URL,
-		// });
-		// download_file(req, zip_fn, cb);
-	}, function(cb) {
 		const new_dir_abs = path.resolve(new_dir);
 		extract_zip(zip_fn, {dir: new_dir_abs}, cb);
 	}, function(cb) {
