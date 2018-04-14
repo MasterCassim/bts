@@ -124,3 +124,8 @@ h3 {
 	font-size: 5vmin;
 	width: 20em;
 }
+
+.finished_container,
+.printed_container {
+	margin-top: 15px;
+}
