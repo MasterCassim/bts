@@ -166,9 +166,9 @@ function ui_show() {
 	}], [{
         label: 'Toggle Status',
         func: function() {
-        	uiu.toggle('.btp_status');
-            uiu.toggle('.ticker_status');
-            uiu.toggle('.status');
+        	uiu.toggle(uiu.qs('.btp_status'));
+            uiu.toggle(uiu.qs('.ticker_status'));
+            uiu.toggle(uiu.qs('.status'));
 		},
     }, {
 		label: 'Scoreboard',
