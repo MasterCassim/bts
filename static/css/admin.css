@@ -125,6 +125,7 @@ h3 {
 	width: 20em;
 }
 
+.unassigned_container,
 .finished_container,
 .printed_container {
 	margin-top: 15px;
