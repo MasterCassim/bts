@@ -1,4 +1,5 @@
 BUPDEV=static/bup/dev
+BUPDIST=dist/
 
 default: all
 
@@ -42,7 +43,9 @@ stylelint:
 	@./node_modules/.bin/stylelint static/css/*.css
 
 bup-dist:
-	git clone https://github.com/MasterCassim/bup.git dist && cd dist && make deps && make dist
+	if test -e ${BUPDIST} ; then cd ${BUPDIST} && git reset --hard && git pull; fi
+	if test '!' -e ${BUPDIST} ; then git clone https://github.com/MasterCassim/bup.git ${BUPDIST}; fi
+	cd ${BUPDIST} && make deps && make dist
 
 all: deps
 	${MAKE} bup-dist
