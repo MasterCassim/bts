@@ -164,6 +164,13 @@ function ui_show() {
 		func: ui_show,
 		'class': 'ct_name',
 	}], [{
+        label: 'Toggle Status',
+        func: function() {
+        	uiu.toggle('.btp_status');
+            uiu.toggle('.ticker_status');
+            uiu.toggle('.status');
+		},
+    }, {
 		label: 'Scoreboard',
 		href: '/bup/#btsh_e=' + encodeURIComponent(curt.key) + '&display&dm_style=international',
 	}, {
