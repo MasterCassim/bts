@@ -181,6 +181,34 @@ function handle_match_add(app, ws, msg) {
 	});
 }
 
+function handle_match_printed(app, ws, msg) {
+    if (!_require_msg(ws, msg, ['tournament_key', 'id'])) {
+        return;
+    }
+    const tournament_key = msg.tournament_key;
+    app.db.matches.update({_id: msg.id, tournament_key}, {$set: { printed: true }}, { returnUpdatedDocs: true }, function(err, numAffected, changed_match) {
+        if (err) {
+            ws.respond(msg, err);
+            return;
+        }
+
+        if (numAffected !== 1) {
+            ws.respond(msg, new Error('Cannot find match ' + msg.id + ' of tournament ' + tournament_key + ' in database'));
+            return;
+        }
+
+        if (changed_match._id !== msg.id) {
+            const errmsg = 'Match ' + changed_match._id + ' changed by accident, intended to change ' + msg.id + ' (old nedb version?)';
+            serror.silent(errmsg);
+            ws.respond(msg, new Error(errmsg));
+            return;
+        }
+
+        notify_change(app, tournament_key, 'match_printed', { match__id: msg.id });
+        ws.respond(msg, err);
+    });
+}
+
 function handle_match_edit(app, ws, msg) {
 	if (!_require_msg(ws, msg, ['tournament_key', 'id', 'setup'])) {
 		return;
@@ -414,6 +442,7 @@ module.exports = {
 	handle_create_tournament,
 	handle_courts_add,
 	handle_match_add,
+	handle_match_printed,
 	handle_match_edit,
 	handle_ticker_pushall,
 	handle_tournament_get,

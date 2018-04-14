@@ -7,6 +7,7 @@
 	text-align: right;
 }
 
+.match_complete_button,
 .match_edit_button,
 .match_scoresheet_button,
 .match_rawinfo {
@@ -17,6 +18,9 @@
 	min-height: 1em;
 	background-size: 100%;
 	opacity: 0.5;
+}
+.match_complete_button {
+	background-image: url(../icons/complete.svg);
 }
 .match_edit_button {
 	background-image: url(../icons/edit.svg);
@@ -30,6 +34,7 @@
 	background-image: url(../icons/rawinfo.svg);
 }
 
+.match_complete_button:hover,
 .match_edit_button:hover,
 .match_scoresheet_button:hover {
 	opacity: 1;

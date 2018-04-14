@@ -43,6 +43,13 @@ function render_match_row(tr, match, court, include_court) {
 
 	const setup = match.setup;
 	const actions_td = uiu.el(tr, 'td');
+
+	const complete_btn = uiu.el(actions_td, 'div', {
+        'class': 'vlink match_complete_button',
+        'data-match__id': match._id,
+    });
+    complete_btn.addEventListener('click', on_complete_button_click);
+
 	const edit_btn = uiu.el(actions_td, 'div', {
 		'class': 'vlink match_edit_button',
 		'data-match__id': match._id,
@@ -106,6 +113,22 @@ function prepare_render(t) {
 	for (const c of t.courts) {
 		t.courts_by_id[c._id] = c;
 	}
+}
+
+function on_complete_button_click(e) {
+	const btn = e.target;
+	const match_id = btn.getAttribute('data-match__id');
+
+	send({
+        type: 'match_printed',
+        id: match_id,
+        tournament_key: curt.key,
+    }, function match_edit_callback(err) {
+        if (err) {
+            return cerror.net(err);
+        }
+        _cancel_ui_edit();
+    });
 }
 
 function on_edit_button_click(e) {
