@@ -357,7 +357,7 @@ function render_finished(container) {
 	uiu.empty(container);
 	uiu.el(container, 'h3', {}, 'Finished Matches');
 
-	const matches = curt.matches.filter(m => calc_section(m) === 'finished');
+	const matches = curt.matches.filter(m => calc_section(m) === 'finished' && !m.printed);
 	render_match_table(container, matches, true);
 }
 
@@ -365,7 +365,7 @@ function render_printed(container) {
 	uiu.empty(container);
 	uiu.el(container, 'h3', {}, 'Already Printed Matches');
 
-	const matches = curt.matches.filter(m => calc_section(m) === 'finished');
+	const matches = curt.matches.filter(m => calc_section(m) === 'finished' && m.printed);
 	render_match_table(container, matches, true);
 }
 
