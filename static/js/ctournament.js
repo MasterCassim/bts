@@ -129,6 +129,7 @@ function _show_render_matches() {
 	cmatch.render_courts(uiu.qs('.courts_container'));
 	cmatch.render_unassigned(uiu.qs('.unassigned_container'));
 	cmatch.render_finished(uiu.qs('.finished_container'));
+	cmatch.render_printed(uiu.qs('.printed_container'))
 }
 
 function ui_btp_fetch() {
@@ -195,6 +196,7 @@ function ui_show() {
 	const match_create_container = uiu.el(main, 'div');
 	cmatch.render_create(match_create_container);
 	uiu.el(main, 'div', 'finished_container');
+    uiu.el(main, 'div', 'printed_container');
 	_show_render_matches();
 }
 _route_single(/t\/([a-z0-9]+)\/$/, ui_show, change.default_handler(_show_render_matches, {

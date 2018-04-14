@@ -338,6 +338,14 @@ function render_finished(container) {
 	render_match_table(container, matches, true);
 }
 
+function render_printed(container) {
+	uiu.empty(container);
+	uiu.el(container, 'h3', {}, 'Already Printed Matches');
+
+	const matches = curt.matches.filter(m => calc_section(m) === 'finished');
+	render_match_table(container, matches, true);
+}
+
 function render_courts(container) {
 	uiu.empty(container);
 	const table = uiu.el(container, 'table', 'match_table');
@@ -582,6 +590,7 @@ return {
 	prepare_render,
 	render_create,
 	render_finished,
+    render_printed,
 	render_unassigned,
 	render_courts,
 	render_umpire_options,
