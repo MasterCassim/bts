@@ -36,7 +36,11 @@ function render_match_table_header(table, include_courts) {
 	uiu.el(title_tr, 'th', {}, 'State');
 }
 
-function render_match_row(tr, match, court, include_court, alreadyPrinted) {
+function render_match_row(tr, match, court, include_court, hidePrinted) {
+	if (hidePrinted == null) {
+		hidePrinted = true;
+	}
+
 	if (!court) {
 		court = curt.courts_by_id[match.setup.court_id];
 	}
@@ -44,7 +48,7 @@ function render_match_row(tr, match, court, include_court, alreadyPrinted) {
 	const setup = match.setup;
 	const actions_td = uiu.el(tr, 'td');
 
-	if (alreadyPrinted !== true) {
+	if (hidePrinted !== true) {
         const complete_btn = uiu.el(actions_td, 'div', {
             'class': 'vlink match_complete_button',
             'data-match__id': match._id,
@@ -333,14 +337,14 @@ crouting.register(/t\/([a-z0-9]+)\/m\/([-a-zA-Z0-9_ ]+)\/scoresheet$/, function(
 	ui_scoresheet(match_id);
 }));
 
-function render_match_table(container, matches, include_courts, alreadyPrinted) {
+function render_match_table(container, matches, include_courts, hidePrinted) {
 	const table = uiu.el(container, 'table', 'match_table');
 	render_match_table_header(table, include_courts);
 	const tbody = uiu.el(table, 'tbody');
 
 	for (const m of matches) {
 		const tr = uiu.el(tbody, 'tr');
-		render_match_row(tr, m, null, include_courts, alreadyPrinted);
+		render_match_row(tr, m, null, include_courts, hidePrinted);
 	}
 }
 
@@ -368,7 +372,7 @@ function render_printed(container) {
 	uiu.el(container, 'h3', {}, 'Already Printed Matches');
 
 	const matches = curt.matches.filter(m => calc_section(m) === 'finished' && m.printed);
-	render_match_table(container, matches, true, true);
+	render_match_table(container, matches, true);
 }
 
 function render_courts(container) {
