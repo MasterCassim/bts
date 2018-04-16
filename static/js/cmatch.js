@@ -364,7 +364,7 @@ function render_finished(container) {
 	uiu.el(container, 'h3', {}, 'Finished Matches');
 
 	const matches = curt.matches.filter(m => calc_section(m) === 'finished' && !m.printed);
-	render_match_table(container, matches, true);
+	render_match_table(container, matches, true, false);
 }
 
 function render_printed(container) {
