@@ -82,6 +82,7 @@ function set(vpath, keys, cleanup_func) {
 		return; // Already set, don't change
 	}
 	_set_path(whole_path);
+    _load(window.location.pathname);
 }
 
 function rerender() {
@@ -90,7 +91,6 @@ function rerender() {
 
 function _set_path(new_path) {
 	history.pushState(null, '', new_path);
-	_load(window.location.pathname);
 }
 
 function init() {

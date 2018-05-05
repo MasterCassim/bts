@@ -4,7 +4,10 @@
 	"author": "Philipp Hagemeister <phihag@phihag.de>",
 	"description": "Badminton Tournament Server",
 	"scripts": {
-		"test": "mocha test/"
+		"test": "mocha test/",
+		"start": "forever start bts/bts.js",
+		"stop": "forever stop bts/bts.js",
+		"logs": "forever logs bts/bts.js"
 	},
 	"dependencies": {
 		"async": "*",
@@ -23,7 +26,8 @@
 		"mocha": "*",
 		"stylelint": "*",
 		"stylelint-config-standard": "*",
-		"supervisor": "*"
+		"supervisor": "*",
+		"forever": "*"
 	},
 	"private": true
 }

@@ -29,7 +29,7 @@ ticker-dev:
 	@./node_modules/.bin/supervisor -i static ticker/ticker.js
 
 run:
-	@node bts/bts.js
+	npm run start
 
 ticker-run:
 	@node ticker/ticker.js
