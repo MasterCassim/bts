@@ -46,7 +46,6 @@ bup-dist:
 	if test -e ${BUPDIST} ; then cd ${BUPDIST} && git reset --hard && git pull; fi
 	if test '!' -e ${BUPDIST} ; then git clone https://github.com/MasterCassim/bup.git ${BUPDIST}; fi
 	cd ${BUPDIST} && make deps && make dist
-	cd ${BUPDEV} && make download-libs
 
 all: deps
 	${MAKE} bup-dist
