@@ -93,6 +93,7 @@ function create_app(config, db) {
 	app.use('/bupdev/', express.static(path.join(utils.root_dir(), 'static/bup/dev/')));
 	app.use('/static/', express.static('static/', {}));
 	app.use('/admin/', basicAuth({
+		challenge: true,
         users: { 'admin': 'dsm2018-vk' }
     }), cadmin_router());
 	app.get('/', function(req, res) {
