@@ -5,6 +5,7 @@ const path = require('path');
 const url = require('url');
 
 const async = require('async');
+const basicAuth = require('express-basic-auth');
 const body_parser = require('body-parser');
 const ws_module = require('ws');
 const express = require('express');
@@ -91,7 +92,9 @@ function create_app(config, db) {
 	app.use('/bup/', express.static(config.bup_location, {index: config.bup_index}));
 	app.use('/bupdev/', express.static(path.join(utils.root_dir(), 'static/bup/dev/')));
 	app.use('/static/', express.static('static/', {}));
-	app.use('/admin/', cadmin_router());
+	app.use('/admin/', basicAuth({
+        users: { 'admin': 'dsm2018-vk' }
+    }), cadmin_router());
 	app.get('/', function(req, res) {
 		res.redirect('/admin/');
 	});

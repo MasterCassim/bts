@@ -12,6 +12,7 @@
 	},
 	"dependencies": {
 		"async": "*",
+		"express-basic-auth": "*",
 		"body-parser": "*",
 		"express": "*",
 		"extract-zip": "*",
