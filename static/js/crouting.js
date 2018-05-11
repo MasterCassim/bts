@@ -82,7 +82,7 @@ function set(vpath, keys, cleanup_func) {
 		return; // Already set, don't change
 	}
 	_set_path(whole_path);
-    _load(window.location.pathname);
+    //_load(window.location.pathname);
 }
 
 function rerender() {
