@@ -1,6 +1,11 @@
 'use strict';
 
 var cmatch = (function() {
+	
+function openInNewTab(url) {
+  var win = window.open(url, '_blank');
+  win.focus();
+}
 
 function calc_score_str(match) {
 	const netscore = match.network_score;
@@ -146,7 +151,7 @@ function on_edit_button_click(e) {
 function on_scoresheet_button_click(e) {
 	const btn = e.target;
 	const match_id = btn.getAttribute('data-match__id');
-	ui_scoresheet(match_id);
+	ui_scoresheet(match_id, true);
 }
 
 function _make_setup(d) {
@@ -269,12 +274,18 @@ function _cancel_ui_scoresheet() {
 	ctournament.ui_show();
 }
 
-function ui_scoresheet(match_id) {
+function ui_scoresheet(match_id, buttonClicked) {
 	const match = utils.find(curt.matches, m => m._id === match_id);
 	if (!match) {
 		cerror.silent('Match ' + match_id + ' konnte nicht gefunden werden');
 		return;
 	}
+	
+	if (buttonClicked) {
+		openInNewTab('t/' + curt.key + '/m/' + match_id + '/scoresheet');
+		return ;	
+	}
+	
 	crouting.set('t/' + curt.key + '/m/' + match_id + '/scoresheet', {}, _cancel_ui_scoresheet);
 
 	cbts_utils.esc_stack_push(_cancel_ui_scoresheet);
