@@ -127,8 +127,8 @@ function update_current_match(c) {
 
 function _show_render_matches() {
 	cmatch.render_courts(uiu.qs('.courts_container'));
-	cmatch.render_unassigned(uiu.qs('.unassigned_container'));
 	cmatch.render_finished(uiu.qs('.finished_container'));
+    cmatch.render_unassigned(uiu.qs('.unassigned_container'));
 	cmatch.render_printed(uiu.qs('.printed_container'))
 }
 
