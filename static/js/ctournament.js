@@ -199,10 +199,10 @@ function ui_show() {
 	cmatch.prepare_render(curt);
 
 	uiu.el(main, 'div', 'courts_container');
-	uiu.el(main, 'div', 'unassigned_container');
-	const match_create_container = uiu.el(main, 'div');
-	cmatch.render_create(match_create_container);
 	uiu.el(main, 'div', 'finished_container');
+    uiu.el(main, 'div', 'unassigned_container');
+    const match_create_container = uiu.el(main, 'div');
+    cmatch.render_create(match_create_container);
     uiu.el(main, 'div', 'printed_container');
 	_show_render_matches();
 }
